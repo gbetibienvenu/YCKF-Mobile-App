@@ -1,0 +1,6 @@
+export const ACTIVE_CONTACTS = {
+     email: 'youremailhere@gmail.com',  // Your actual email
+     whatsapp: '+2349136610849',   // Your actual WhatsApp number
+   };
+
+  //  STORAGE_KEYS
