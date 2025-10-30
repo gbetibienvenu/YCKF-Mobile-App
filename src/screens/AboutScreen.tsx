@@ -215,7 +215,7 @@ const AboutScreen: React.FC = () => {
 
         {/* Legal Section */}
         <View style={styles.legalSection}>
-          <Text style={styles.legalText}>© 2025 Young Cyber Knights Foundation</Text>
+          <Text style={styles.legalText}>© 2025 Bien Bien DevPro</Text>
           <Text style={styles.legalText}>All rights reserved</Text>
 
           <View style={styles.legalLinks}>
