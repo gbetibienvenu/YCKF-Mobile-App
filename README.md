@@ -12,7 +12,7 @@ This document bundle contains the full documentation for the YCKF Mobile App sub
 
 **YCKF Cybercrime Reporting Mobile App**
 
-**Author:** Bienvenu Gbeti (replace if needed)
+**Author:** Bienvenu Gbeti
 
 **Duration:** 23 Sep 2025 - 23 Nov 2025
 
