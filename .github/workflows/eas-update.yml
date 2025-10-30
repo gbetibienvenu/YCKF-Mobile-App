@@ -1,0 +1,50 @@
+name: Publish EAS Update (OTA)
+
+on:
+  push:
+    branches:
+      - main        # change to the branch you want to trigger OTA for
+      - preview     # optional: keep a separate preview channel
+
+jobs:
+  publish-update:
+    name: Publish EAS Update
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'    # or your project's node version
+
+      - name: Install dependencies
+        run: |
+          npm ci
+
+      - name: Install EAS CLI
+        run: |
+          npm install -g eas-cli@latest
+
+      - name: Authenticate to Expo
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          echo "Authenticated via EXPO_TOKEN"
+
+      - name: Publish EAS update
+        env:
+          EXPO_TOKEN: ${{ secrets.EXPO_TOKEN }}
+        run: |
+          # choose branch name depending on pushed branch
+          BRANCH="${{ github.ref_name }}"
+          # map main->production (optional) or use preview by default
+          if [ "$BRANCH" = "main" ]; then
+            TARGET_BRANCH="production"
+          else
+            TARGET_BRANCH="$BRANCH"
+          fi
+
+          echo "Publishing to EAS Update branch: $TARGET_BRANCH"
+          eas update --branch $TARGET_BRANCH --message "CI: update from $GITHUB_ACTOR on $GITHUB_SHA"
